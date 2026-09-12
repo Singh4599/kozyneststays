@@ -8,8 +8,8 @@ import { Heart } from "lucide-react";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Stays", href: "#stays" },
-  { label: "About Us", href: "#about" },
-  { label: "Offers", href: "#offers" },
+  { label: "About Us", href: "#experience" },
+  { label: "Offers", href: "#stays" },
   { label: "Contact", href: "#contact" },
 ];
 

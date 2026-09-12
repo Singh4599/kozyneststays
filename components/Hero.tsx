@@ -272,7 +272,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="#experience"
+                href="#stays"
                 style={{
                   display: "inline-flex", alignItems: "center", gap: "12px",
                   fontSize: "14px", fontWeight: 500, color: "#1E2A20", textDecoration: "none",
