@@ -1,26 +1,200 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-bg: #FAF7F2;
+  --color-bg-soft: #F2ECE3;
+  --color-surface: #FFFFFF;
+  --color-primary: #1E2A20;
+  --color-primary-h: #152017;
+  --color-accent: #B78955;
+  --color-accent-light: #d4a96a;
+  --color-text-pri: #1C1B19;
+  --color-text-sec: #68645E;
+  --color-border: #E5DED4;
+  --color-border-light: #EEE9E1;
+
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  background-color: #FAF7F2;
+  color: #1C1B19;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Responsive container utility ── */
+.kn-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+@media (min-width: 480px) { .kn-container { padding-inline: 18px; } }
+@media (min-width: 640px) { .kn-container { padding-inline: 24px; } }
+@media (min-width: 768px) { .kn-container { padding-inline: 32px; } }
+@media (min-width: 1280px) { .kn-container { padding-inline: 40px; } }
+
+/* ── Section spacing ── */
+.kn-section {
+  padding-block: 48px;
+}
+@media (min-width: 640px) { .kn-section { padding-block: 64px; } }
+@media (min-width: 1024px) { .kn-section { padding-block: 80px; } }
+
+/* Fade-up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #B78955;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF7F2; }
+::-webkit-scrollbar-thumb { background: #E5DED4; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #B78955; }
+
+/* Swiper overrides */
+.swiper-pagination-bullet {
+  background: #E5DED4 !important;
+  opacity: 1 !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+.swiper-pagination-bullet-active {
+  background: #1E2A20 !important;
+  width: 20px !important;
+  border-radius: 3px !important;
+}
+
+/* Move swiper pagination below cards so it doesn't overlap Book Now */
+.swiper-pagination {
+  position: relative !important;
+  bottom: auto !important;
+  margin-top: 16px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Hero CTA hover */
+.hero-cta-primary:hover { background: #152017 !important; }
+
+/* Trust platform hover */
+.trust-platform-name { opacity: 0.62; transition: opacity 0.2s ease; }
+.trust-platform-name:hover { opacity: 1; }
+
+/* Footer link hover */
+.footer-link { transition: color 0.15s ease; }
+.footer-link:hover { color: #1E2A20 !important; }
+
+/* Nav link hover underline */
+.nav-link { transition: color 0.2s ease; }
+.nav-link:hover { color: #1E2A20 !important; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #B78955;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* Footer social icon hover */
+.footer-social { transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.footer-social:hover { background: #1E2A20 !important; color: #FAF7F2 !important; border-color: #1E2A20 !important; }
+
+/* Dark footer links */
+.footer-link-dark { transition: color 0.18s ease; }
+.footer-link-dark:hover { color: rgba(250,247,242,0.92) !important; }
+
+/* Dark footer social icons */
+.footer-social-dark { transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.footer-social-dark:hover {
+  background: rgba(183,137,85,0.2) !important;
+  color: #B78955 !important;
+  border-color: rgba(183,137,85,0.4) !important;
+}
+
+/* Benefit card hover lift */
+.benefit-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.benefit-card:hover { transform: translateY(-4px); }
+
+/* Date input – remove browser chrome */
+input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
+input[type="date"]::-webkit-inner-spin-button { display: none; }
+
+/* ── Marquee ── */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Benefit card: image scale on hover ── */
+.benefit-card:hover img { transform: scale(1.06) !important; }
+
+/* ── Booking modal slide-up ── */
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* ── Footer accordion toggle for mobile ── */
+.footer-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.footer-accordion-content.open {
+  max-height: 400px;
+}
+
+@keyframes scroll-dot {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(8px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 1; }
 }
