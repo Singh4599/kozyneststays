@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://kozyneststays.com/sitemap.xml",
+    sitemap: "https://kozyneststays.in/sitemap.xml",
   };
 }

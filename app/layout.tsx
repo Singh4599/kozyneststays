@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kozyneststays.com"),
+  metadataBase: new URL("https://kozyneststays.in"),
 
   /* ── Title ── */
   title: {
