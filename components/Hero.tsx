@@ -54,94 +54,702 @@ export default function Hero() {
   return (
     <>
       {/* ═══════════════════════════════════════
-          MOBILE: Original header + hero (untouched)
+          MOBILE: Art-directed immersive hero
       ═══════════════════════════════════════ */}
       <div className="lg:hidden">
-        {/* Mobile header */}
-        <header
+        <section
           style={{
-            position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-            height: scrolled ? "64px" : "76px",
-            background: "#FAF7F2", borderBottom: "1px solid #E5DED4",
-            boxShadow: scrolled ? "0 1px 12px rgba(30,42,32,0.07)" : "none",
-            transition: "height 0.3s ease, box-shadow 0.3s ease",
+            position: "relative",
+            width: "100%",
+            height: "clamp(700px, 86svh, 820px)",
+            overflow: "hidden",
           }}
-          role="banner"
+          aria-label="Hero — KozyNestStays premium stays in Greater Noida"
         >
-          <div style={{
-            maxWidth: "1280px", margin: "0 auto",
-            padding: "0 clamp(16px, 5vw, 80px)", height: "100%",
-            display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px",
-          }}>
-            <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none", flexShrink: 0 }}>
-              <Image src="/favicon.png" alt="KozyNestStays logo" width={36} height={36} style={{ borderRadius: "8px" }} />
+          {/* ── LAYER 0: Full-bleed background photograph ── */}
+          <Image
+            src="/images/hero-mobile-bg.png"
+            alt="KozyNestStays — luxury architectural interior with arch"
+            fill
+            priority
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+              objectPosition: "center center",
+              zIndex: 0,
+            }}
+          />
+
+          {/* ── LAYER 1: Subtle readability wash (upper-left only) ── */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 1,
+              background:
+                "linear-gradient(165deg, rgba(250,247,242,0.7) 0%, rgba(250,247,242,0.4) 38%, transparent 62%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* ── LAYER 30: Floating header ── */}
+          <header
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              zIndex: 30,
+              paddingTop: "max(16px, env(safe-area-inset-top, 0px))",
+              paddingInline: "22px",
+              paddingBottom: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+            role="banner"
+          >
+            <Link
+              href="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                textDecoration: "none",
+                flexShrink: 0,
+              }}
+            >
+              <Image
+                src="/favicon.png"
+                alt="KozyNestStays logo"
+                width={42}
+                height={42}
+                style={{ borderRadius: "10px" }}
+              />
               <div>
                 <div style={{ display: "flex", alignItems: "baseline" }}>
-                  <span style={{ fontWeight: 700, fontSize: "15px", color: "#1E2A20" }}>KozyNest</span>
-                  <span style={{ fontWeight: 700, fontSize: "15px", color: "#B78955" }}>Stays</span>
+                  <span
+                    style={{
+                      fontWeight: 700,
+                      fontSize: "17px",
+                      color: "#1E2A20",
+                    }}
+                  >
+                    KozyNest
+                  </span>
+                  <span
+                    style={{
+                      fontWeight: 700,
+                      fontSize: "17px",
+                      color: "#B78955",
+                    }}
+                  >
+                    Stays
+                  </span>
                 </div>
-                <p style={{ fontSize: "8.5px", letterSpacing: "0.12em", color: "#68645E", textTransform: "uppercase", lineHeight: 1 }}>Feel at Home, Anywhere</p>
+                <p
+                  style={{
+                    fontSize: "8.5px",
+                    letterSpacing: "0.14em",
+                    color: "#5A564F",
+                    textTransform: "uppercase",
+                    lineHeight: 1,
+                    marginTop: "2px",
+                  }}
+                >
+                  Feel at Home, Anywhere
+                </p>
               </div>
             </Link>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-              <Link href="#stays" style={{
-                display: "inline-flex", alignItems: "center",
-                padding: "8px 16px", borderRadius: "9px",
-                background: "#1E2A20", color: "#FAF7F2",
-                fontSize: "13px", fontWeight: 600, textDecoration: "none",
-              }}>Book Now</Link>
-            </div>
-          </div>
-        </header>
-        <div style={{ height: "76px" }} aria-hidden="true" />
 
-        {/* Mobile hero content */}
-        <section style={{ position: "relative", width: "100%", background: "#FAF7F2", overflow: "hidden" }}>
-          <div style={{ position: "relative", width: "100%", height: "52vh", minHeight: "300px", maxHeight: "420px" }}>
-            <Image src="/images/hero.jpg" alt="Luxurious living room — KozyNestStays Greater Noida" fill className="object-cover object-center" priority sizes="100vw" />
-            <div style={{ position: "absolute", top: "16px", left: "16px", color: "rgba(255,255,255,0.85)", fontSize: "9px", fontWeight: 600, letterSpacing: "0.18em", textTransform: "uppercase", lineHeight: 1.4, textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
-              MORE THAN A STAY<br />A BETTER YOU
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                width: "46px",
+                height: "46px",
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.72)",
+                backdropFilter: "blur(6px)",
+                border: "1px solid rgba(229,222,212,0.35)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                flexShrink: 0,
+              }}
+              aria-label="Open menu"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1E2A20"
+                strokeWidth="2"
+                strokeLinecap="round"
+              >
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="17" x2="20" y2="17" />
+              </svg>
+            </button>
+          </header>
+
+          {/* ── Mobile slide-over navigation ── */}
+          {mobileOpen && (
+            <div
+              style={{
+                position: "fixed",
+                inset: 0,
+                zIndex: 60,
+                background: "rgba(30,42,32,0.4)",
+                backdropFilter: "blur(2px)",
+              }}
+              onClick={() => setMobileOpen(false)}
+            >
+              <nav
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  width: "280px",
+                  maxWidth: "80vw",
+                  background: "#FAF7F2",
+                  padding:
+                    "calc(env(safe-area-inset-top, 0px) + 24px) 28px 40px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6px",
+                  boxShadow: "-8px 0 40px rgba(30,42,32,0.15)",
+                  animation: "slideInRight 0.25s ease-out",
+                }}
+              >
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    alignSelf: "flex-end",
+                    width: "36px",
+                    height: "36px",
+                    borderRadius: "50%",
+                    background: "#F2ECE3",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "16px",
+                  }}
+                  aria-label="Close menu"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1E2A20"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  >
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    style={{
+                      display: "block",
+                      padding: "14px 0",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      color: "#1E2A20",
+                      textDecoration: "none",
+                      borderBottom: "1px solid #EDE7DA",
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  href="#stays"
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    marginTop: "20px",
+                    padding: "14px 24px",
+                    background: "#1E2A20",
+                    color: "#FAF7F2",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    borderRadius: "12px",
+                    textDecoration: "none",
+                  }}
+                >
+                  Book Now
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </nav>
+            </div>
+          )}
+
+          {/* ── LAYER 10: Main editorial content (SINGLE flowing block) ── */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              zIndex: 10,
+              paddingTop:
+                "calc(max(16px, env(safe-area-inset-top, 0px)) + clamp(70px, 10vh, 86px))",
+              paddingLeft: "22px",
+              paddingRight: "22px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              pointerEvents: "none",
+            }}
+          >
+            <div style={{ pointerEvents: "auto" }}>
+
+              {/* ── "Your space." — dark editorial serif ── */}
+              <h1
+                style={{
+                  fontFamily: "var(--font-cormorant), Georgia, serif",
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(66px, 18.5vw, 82px)",
+                    fontWeight: 700,
+                    lineHeight: 0.82,
+                    letterSpacing: "-0.04em",
+                    color: "#16231A",
+                  }}
+                >
+                  Your
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(66px, 18.5vw, 82px)",
+                    fontWeight: 700,
+                    lineHeight: 0.82,
+                    letterSpacing: "-0.04em",
+                    color: "#16231A",
+                    marginBottom: "clamp(4px, 1vh, 8px)",
+                  }}
+                >
+                  space.
+                </span>
+
+                {/* ── "Your pace." — warm italic serif ── */}
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(62px, 17.5vw, 76px)",
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    lineHeight: 0.84,
+                    letterSpacing: "-0.02em",
+                    color: "#C8A96E",
+                  }}
+                >
+                  Your
+                </span>
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: "clamp(62px, 17.5vw, 76px)",
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    lineHeight: 0.84,
+                    letterSpacing: "-0.02em",
+                    color: "#C8A96E",
+                  }}
+                >
+                  pace.
+                </span>
+              </h1>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontSize: "13px",
+                  color: "#3D3B38",
+                  lineHeight: 1.45,
+                  maxWidth: "220px",
+                  marginTop: "clamp(18px, 3vh, 24px)",
+                  marginBottom: "clamp(18px, 2.5vh, 22px)",
+                }}
+              >
+                Handpicked, fully-furnished apartments at Paramount Golf
+                Foreste, Greater Noida — for every kind of traveler.
+              </p>
+
+              {/* Watch Our Story */}
+              <Link
+                href="#experience"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "14px",
+                  textDecoration: "none",
+                  color: "#1E2A20",
+                }}
+              >
+                <span
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "50%",
+                    border: "1.5px solid rgba(30,42,32,0.2)",
+                    background: "rgba(255,255,255,0.45)",
+                    backdropFilter: "blur(4px)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
+                >
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="#1E2A20"
+                    stroke="none"
+                  >
+                    <polygon points="7 3 21 12 7 21 7 3" />
+                  </svg>
+                </span>
+                <span
+                  style={{
+                    fontSize: "13.5px",
+                    fontWeight: 500,
+                  }}
+                >
+                  Watch Our Story
+                </span>
+              </Link>
             </div>
           </div>
-          <div style={{ background: "#FAF7F2", borderRadius: "28px 28px 0 0", marginTop: "-28px", position: "relative", zIndex: 2, padding: "28px 24px 0" }}>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "16px" }}>
-              <span style={{ flex: 1, height: "1px", background: "#D5CEBC", maxWidth: "40px" }} />
-              <span style={{ fontSize: "9px", fontWeight: 700, letterSpacing: "0.2em", color: "#68645E", textTransform: "uppercase" }}>Greater Noida</span>
-              <span style={{ flex: 1, height: "1px", background: "#D5CEBC", maxWidth: "40px" }} />
+
+          {/* ── LAYER 20: Floating booking console ── */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "86px",
+              left: "16px",
+              right: "16px",
+              zIndex: 20,
+            }}
+          >
+            <div
+              style={{
+                background: "rgba(252,250,246,0.93)",
+                backdropFilter: "blur(16px)",
+                borderRadius: "22px",
+                padding: "14px 14px 12px",
+                boxShadow:
+                  "0 8px 40px rgba(30,42,32,0.1), 0 0 0 1px rgba(229,222,212,0.3)",
+                maxWidth: "360px",
+                margin: "0 auto",
+              }}
+            >
+              {/* Booking controls row */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                }}
+              >
+                {/* Check-in */}
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 0",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#68645E"
+                    strokeWidth="1.5"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "12.5px",
+                        fontWeight: 600,
+                        color: "#1E2A20",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Check-in
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "11px",
+                        color: "#9A9490",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Select date
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    width: "1px",
+                    height: "28px",
+                    background: "#E5DED4",
+                    flexShrink: 0,
+                  }}
+                />
+
+                {/* Check-out */}
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 12px",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#68645E"
+                    strokeWidth="1.5"
+                  >
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  <div>
+                    <p
+                      style={{
+                        fontSize: "12.5px",
+                        fontWeight: 600,
+                        color: "#1E2A20",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Check-out
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "11px",
+                        color: "#9A9490",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      Select date
+                    </p>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    width: "1px",
+                    height: "28px",
+                    background: "#E5DED4",
+                    flexShrink: 0,
+                  }}
+                />
+
+                {/* Guests */}
+                <div
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "8px 0 8px 12px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#68645E"
+                      strokeWidth="1.5"
+                    >
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                    </svg>
+                    <div>
+                      <p
+                        style={{
+                          fontSize: "12.5px",
+                          fontWeight: 600,
+                          color: "#1E2A20",
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        Guests
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "11px",
+                          color: "#9A9490",
+                          lineHeight: 1.2,
+                        }}
+                      >
+                        2 Guests
+                      </p>
+                    </div>
+                  </div>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#9A9490"
+                    strokeWidth="1.5"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => setBookingStay(stays[0])}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  padding: "14px 24px",
+                  background: "#1E2A20",
+                  color: "#FAF7F2",
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  borderRadius: "14px",
+                  border: "none",
+                  cursor: "pointer",
+                  minHeight: "50px",
+                  boxShadow: "0 4px 16px rgba(30,42,32,0.18)",
+                }}
+              >
+                Find a Stay
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
-            <h1 style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "clamp(36px, 9.5vw, 50px)", fontWeight: 600, lineHeight: 1.06, letterSpacing: "-0.02em", color: "#1E2A20", marginBottom: "12px", textAlign: "center" }}>
-              Your <em style={{ fontStyle: "italic", color: "#B78955", fontWeight: 400 }}>cozy</em> escape<br />starts here.
-            </h1>
-            <p style={{ fontSize: "13.5px", color: "#68645E", lineHeight: 1.75, marginBottom: "20px", textAlign: "center" }}>
-              Handpicked, fully-furnished apartments<br />at Paramount Golf Foreste, Greater Noida —<br />perfect for couples, families &amp; business travelers.
-            </p>
-            <Link href="#stays" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "100%", padding: "15px 24px", background: "#1E2A20", color: "#FAF7F2", fontSize: "15px", fontWeight: 700, borderRadius: "14px", textDecoration: "none", minHeight: "52px" }}>
-              Explore Stays
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </Link>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "20px 0" }}>
-              <span style={{ flex: 1, height: "1px", background: "#E5DED4" }} />
-              <span style={{ fontSize: "8px", fontWeight: 700, letterSpacing: "0.18em", color: "#9A9490", textTransform: "uppercase", whiteSpace: "nowrap" }}>Stays Designed For A Better Tomorrow</span>
-              <span style={{ flex: 1, height: "1px", background: "#E5DED4" }} />
-            </div>
-            <div style={{ display: "flex", alignItems: "flex-start", marginBottom: "20px" }}>
+          </div>
+
+          {/* ── LAYER 12: Amenities strip (3 items only) ── */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: "26px",
+              left: 0,
+              right: 0,
+              zIndex: 12,
+              display: "flex",
+              justifyContent: "center",
+              padding: "0 32px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0",
+                width: "100%",
+                maxWidth: "320px",
+              }}
+            >
               {[
-                { val: "5", label: "Properties", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E2A20" strokeWidth="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-                { val: "100+", label: "Happy Guests", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E2A20" strokeWidth="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
-                { val: "Zeta-1", label: "Greater Noida", icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E2A20" strokeWidth="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> },
-              ].map((s, i) => (
-                <div key={s.label} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", borderRight: i < 2 ? "1px solid #E5DED4" : "none", padding: "0 8px" }}>
-                  {s.icon}
-                  <span style={{ fontFamily: "var(--font-cormorant), Georgia, serif", fontSize: "20px", fontWeight: 700, color: "#1E2A20", lineHeight: 1 }}>{s.val}</span>
-                  <span style={{ fontSize: "9.5px", color: "#68645E", textAlign: "center", lineHeight: 1.3 }}>{s.label}</span>
+                { icon: amenityIcons.home, label: "Fully Furnished" },
+                { icon: amenityIcons.shield, label: "Safe & Secure" },
+                { icon: amenityIcons.pin, label: "Prime Location" },
+              ].map((a, i) => (
+                <div
+                  key={i}
+                  style={{
+                    flex: 1,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "5px",
+                    padding: "0 8px",
+                    borderRight:
+                      i < 2 ? "1px solid rgba(200,195,185,0.45)" : "none",
+                    color: "#4A4640",
+                  }}
+                >
+                  <span style={{ opacity: 0.75 }}>{a.icon}</span>
+                  <span
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 600,
+                      textAlign: "center",
+                      lineHeight: 1.3,
+                    }}
+                  >
+                    {a.label}
+                  </span>
                 </div>
               ))}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", paddingBottom: "20px" }}>
-              <div style={{ width: "22px", height: "34px", borderRadius: "12px", border: "1.5px solid #C5BEAF", display: "flex", justifyContent: "center", paddingTop: "5px" }}>
-                <div style={{ width: "3px", height: "7px", borderRadius: "2px", background: "#B78955", animation: "scroll-dot 1.6s ease-in-out infinite" }} />
-              </div>
-              <span style={{ fontSize: "8px", fontWeight: 700, letterSpacing: "0.18em", color: "#9A9490", textTransform: "uppercase" }}>Scroll to Explore</span>
             </div>
           </div>
         </section>

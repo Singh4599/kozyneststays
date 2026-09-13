@@ -183,6 +183,12 @@ input[type="date"]::-webkit-inner-spin-button { display: none; }
   to { transform: translateY(0); }
 }
 
+/* ── Mobile menu slide-in ── */
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
 /* ── Footer accordion toggle for mobile ── */
 .footer-accordion-content {
   max-height: 0;
