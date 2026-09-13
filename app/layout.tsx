@@ -60,13 +60,18 @@ export const metadata: Metadata = {
   ],
 
   /* ── Authorship ── */
-  authors: [{ name: "KozyNestStays", url: "https://kozyneststays.com" }],
+  authors: [{ name: "KozyNestStays", url: "https://kozyneststays.in" }],
   creator: "KozyNestStays",
   publisher: "KozyNestStays",
 
   /* ── Canonical + Alternates ── */
   alternates: {
-    canonical: "https://kozyneststays.com",
+    canonical: "https://kozyneststays.in",
+  },
+
+  /* ── Verification ── */
+  verification: {
+    google: "1b7GYgBWlpV3BUBw1e2X7J0wiD9oNSHM1NQNN1m7_-8",
   },
 
   /* ── Indexing ── */
