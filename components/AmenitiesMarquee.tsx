@@ -50,7 +50,7 @@ export default function AmenitiesMarquee() {
           alignItems: "center",
           gap: "0",
           width: "max-content",
-          animation: "marquee-scroll 32s linear infinite",
+          animation: "marquee-scroll 18s linear infinite",
         }}
       >
         {track.map((item, i) => (

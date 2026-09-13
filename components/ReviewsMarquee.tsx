@@ -49,7 +49,7 @@ export default function ReviewsMarquee() {
           display: "flex",
           gap: "0",
           width: "max-content",
-          animation: "marquee-scroll 48s linear infinite",
+          animation: "marquee-scroll 24s linear infinite",
           animationDirection: "reverse",
         }}
       >

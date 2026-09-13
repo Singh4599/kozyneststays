@@ -1,18 +1,22 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { X, CalendarDays, Clock, Users, Plus, Minus, MessageCircle } from "lucide-react";
+import { X, CalendarDays, Clock, Users, Plus, Minus, MessageCircle, ChevronDown } from "lucide-react";
 import type { Stay } from "@/data/stays";
 import { formatPrice } from "@/lib/utils";
+import Image from "next/image";
 
 interface BookingModalProps {
   stay: Stay;
+  allStays: Stay[];
   open: boolean;
   onClose: () => void;
 }
 
-export default function BookingModal({ stay, open, onClose }: BookingModalProps) {
+export default function BookingModal({ stay, allStays, open, onClose }: BookingModalProps) {
   const today = new Date().toISOString().split("T")[0];
+  const [selectedStay, setSelectedStay] = useState<Stay>(stay);
+  const [propertyOpen, setPropertyOpen] = useState(false);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [checkInTime, setCheckInTime] = useState("14:00");
@@ -22,6 +26,9 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
   const modalRef = useRef<HTMLDivElement>(null);
   const checkInRef = useRef<HTMLInputElement>(null);
   const checkOutRef = useRef<HTMLInputElement>(null);
+
+  // Sync if parent changes the stay prop
+  useEffect(() => { setSelectedStay(stay); }, [stay]);
 
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
@@ -68,14 +75,14 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
       ``,
       `I would like to enquire about a stay.`,
       ``,
-      `*Property:* ${stay.name}`,
+      `*Property:* ${selectedStay.name}`,
       `*Location:* Paramount Golf Foreste, Zeta-1, Greater Noida`,
       ``,
       `*Check-in:* ${formatDate(checkIn)} at ${formatTime(checkInTime)}`,
       `*Check-out:* ${formatDate(checkOut)} at ${formatTime(checkOutTime)}`,
       ``,
       `*Guests:* ${guests}`,
-      `*Price:* Rs. ${formatPrice(stay.price)} per night`,
+      `*Price:* Rs. ${formatPrice(selectedStay.price)} per night`,
       ``,
       `Please confirm availability and booking details.`,
       ``,
@@ -84,7 +91,6 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
 
     const msg = lines.join("\n");
     window.open(`https://wa.me/919211549792?text=${encodeURIComponent(msg)}`, "_blank");
-
   };
 
   if (!open) return null;
@@ -134,7 +140,7 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
         background: "rgba(30,42,32,0.5)", backdropFilter: "blur(4px)",
         display: "flex", alignItems: "flex-end", justifyContent: "center",
       }}
-      role="dialog" aria-modal="true" aria-label={`Book ${stay.name}`}
+      role="dialog" aria-modal="true" aria-label={`Book ${selectedStay.name}`}
     >
       <div
         ref={modalRef}
@@ -160,7 +166,7 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
               fontSize: "20px", fontWeight: 600, color: "#1E2A20", lineHeight: 1.2,
             }}>Book Your Stay</h3>
             <p style={{ fontSize: "12px", color: "#68645E", marginTop: "2px" }}>
-              {stay.name} — ₹{formatPrice(stay.price)}/night
+              {selectedStay.name} — ₹{formatPrice(selectedStay.price)}/night
             </p>
           </div>
           <button
@@ -176,20 +182,92 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
 
         {/* Form */}
         <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
-          {/* Property */}
-          <div>
+
+          {/* ── Property Selector ── */}
+          <div style={{ position: "relative" }}>
             <span style={LABEL}>Property</span>
-            <div style={{ ...INPUT_WRAP, cursor: "default" }}>
+            <button
+              onClick={() => setPropertyOpen(p => !p)}
+              style={{
+                width: "100%", display: "flex", alignItems: "center", gap: "12px",
+                background: "#F5F0E8", borderRadius: "12px", padding: "10px 14px",
+                border: propertyOpen ? "1.5px solid #B78955" : "1.5px solid transparent",
+                cursor: "pointer", textAlign: "left",
+                transition: "border-color 0.2s ease",
+              }}
+            >
               <div style={{
-                width: "34px", height: "34px", borderRadius: "8px",
-                background: "#E5DED4", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                fontSize: "16px",
-              }}>🏠</div>
-              <div>
-                <p style={{ fontSize: "14px", fontWeight: 600, color: "#1A1815" }}>{stay.name}</p>
-                <p style={{ fontSize: "11px", color: "#68645E" }}>Paramount Golf Foreste, Greater Noida</p>
+                width: "44px", height: "44px", borderRadius: "8px",
+                overflow: "hidden", flexShrink: 0, position: "relative",
+              }}>
+                <Image
+                  src={selectedStay.images[0] || selectedStay.image}
+                  alt={selectedStay.name}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
               </div>
-            </div>
+              <div style={{ flex: 1 }}>
+                <p style={{ fontSize: "14px", fontWeight: 600, color: "#1A1815" }}>{selectedStay.name}</p>
+                <p style={{ fontSize: "11px", color: "#68645E" }}>₹{formatPrice(selectedStay.price)}/night · Paramount Golf Foreste</p>
+              </div>
+              <ChevronDown
+                size={16}
+                color="#B78955"
+                style={{
+                  transition: "transform 0.2s ease",
+                  transform: propertyOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  flexShrink: 0,
+                }}
+              />
+            </button>
+
+            {/* Dropdown list */}
+            {propertyOpen && (
+              <div style={{
+                position: "absolute", top: "calc(100% + 6px)", left: 0, right: 0,
+                background: "#FAF7F2", borderRadius: "14px",
+                border: "1px solid #E5DED4",
+                boxShadow: "0 12px 40px rgba(30,42,32,0.14)",
+                zIndex: 10, overflow: "hidden",
+              }}>
+                {allStays.map((s, idx) => (
+                  <button
+                    key={s.id}
+                    onClick={() => { setSelectedStay(s); setPropertyOpen(false); }}
+                    style={{
+                      width: "100%", display: "flex", alignItems: "center", gap: "12px",
+                      padding: "10px 14px",
+                      background: selectedStay.id === s.id ? "#F0EBE0" : "transparent",
+                      border: "none", cursor: "pointer", textAlign: "left",
+                      borderBottom: idx < allStays.length - 1 ? "1px solid #EDE7DA" : "none",
+                      transition: "background 0.15s ease",
+                    }}
+                  >
+                    <div style={{
+                      width: "40px", height: "40px", borderRadius: "8px",
+                      overflow: "hidden", flexShrink: 0, position: "relative",
+                    }}>
+                      <Image src={s.images[0] || s.image} alt={s.name} fill style={{ objectFit: "cover" }} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontSize: "13px", fontWeight: 600, color: "#1A1815" }}>{s.name}</p>
+                      <p style={{ fontSize: "11px", color: "#68645E" }}>₹{formatPrice(s.price)}/night</p>
+                    </div>
+                    {selectedStay.id === s.id && (
+                      <div style={{
+                        width: "18px", height: "18px", borderRadius: "50%",
+                        background: "#B78955", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                      }}>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Check-in / Check-out dates */}
@@ -276,7 +354,7 @@ export default function BookingModal({ stay, open, onClose }: BookingModalProps)
             <span style={{
               fontFamily: "var(--font-cormorant), Georgia, serif",
               fontSize: "22px", fontWeight: 700, color: "#1E2A20",
-            }}>₹{formatPrice(stay.price)}</span>
+            }}>₹{formatPrice(selectedStay.price)}</span>
           </div>
 
           {/* Submit */}

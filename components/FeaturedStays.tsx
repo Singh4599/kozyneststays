@@ -202,14 +202,15 @@ export default function FeaturedStays() {
           <div className="hidden md:block" style={{ marginRight: "-clamp(16px, 5vw, 80px)" }}>
             <Swiper
               modules={[Mousewheel, FreeMode]}
-              slidesPerView={3.3}
-              spaceBetween={20}
+              slidesPerView={3.2}
+              spaceBetween={18}
               grabCursor
               freeMode
               mousewheel={{ forceToAxis: true }}
               breakpoints={{
-                1024: { slidesPerView: 3.8, spaceBetween: 24 },
-                1280: { slidesPerView: 4.2, spaceBetween: 24 },
+                1024: { slidesPerView: 3.6, spaceBetween: 20 },
+                1280: { slidesPerView: 4.0, spaceBetween: 22 },
+                1536: { slidesPerView: 4.4, spaceBetween: 22 },
               }}
             >
               {stays.map((s) => (
@@ -241,7 +242,7 @@ export default function FeaturedStays() {
 
       {/* Booking Modal */}
       {bookingStay && (
-        <BookingModal stay={bookingStay} open={!!bookingStay} onClose={() => setBookingStay(null)} />
+        <BookingModal stay={bookingStay} allStays={stays} open={!!bookingStay} onClose={() => setBookingStay(null)} />
       )}
 
       {/* Property Gallery */}

@@ -198,3 +198,21 @@ input[type="date"]::-webkit-inner-spin-button { display: none; }
   60%  { transform: translateY(8px); opacity: 0.3; }
   100% { transform: translateY(0); opacity: 1; }
 }
+
+/* ── Desktop hero animations ── */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroArchIn {
+  from { opacity: 0; transform: translateX(-55%) scale(1.04); }
+  to   { opacity: 1; transform: translateX(-55%) scale(1); }
+}
+@keyframes heroCardsIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroBarUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
