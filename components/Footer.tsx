@@ -292,14 +292,12 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div style={{
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          gap: "12px", paddingTop: "12px", flexWrap: "wrap",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          gap: "12px", paddingTop: "16px", flexWrap: "wrap", borderTop: "1px solid rgba(136,129,120,0.15)",
+          textAlign: "center"
         }}>
-          <p style={{ fontSize: "12px", color: "#888178" }}>
-            &copy; {year} KozyNestStays. All rights reserved.
-          </p>
-          <p style={{ fontSize: "11.5px", color: "#888178" }}>
-            Paramount Golf Foreste, Zeta-1, Greater Noida
+          <p style={{ fontSize: "12.5px", color: "#888178", lineHeight: 1.6 }}>
+            Managed By KozyNestStays &copy; {year} | KozyNestStays. All Rights Reserved. Crafted with ❤️ by <span style={{ fontWeight: 600, color: "#1E2A20" }}>Cypher Studio</span>
           </p>
         </div>
 
