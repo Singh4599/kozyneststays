@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 
@@ -79,8 +81,8 @@ export default function Footer() {
             {/* Col 1 — Brand */}
             <div>
               <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "11px", textDecoration: "none", marginBottom: "14px" }}>
-                <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "#1E2A20", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FAF7F2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <div style={{ width: "36px", height: "36px", borderRadius: "10px", overflow: "hidden", flexShrink: 0 }}>
+                  <Image src="/favicon.png" alt="KozyNestStays logo" width={36} height={36} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                 </div>
                 <div>
                   <span style={{ fontWeight: 800, fontSize: "15px", color: "#1E2A20" }}>KozyNest</span>
@@ -97,7 +99,7 @@ export default function Footer() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "9px", marginBottom: "18px" }}>
                 {[
                   { Icon: Phone, text: "+91 9211549792", href: "tel:+919211549792" },
-                  { Icon: Mail, text: "hello@kozyneststays.com", href: "mailto:hello@kozyneststays.com" },
+                  { Icon: Mail, text: "Anshpandit0074@gmail.com", href: "mailto:Anshpandit0074@gmail.com" },
                   { Icon: MapPin, text: "Paramount Golf Foreste, Zeta-1, Greater Noida", href: "https://maps.google.com/?q=28.513355,77.525688" },
                 ].map(({ Icon, text, href }) => (
                   <li key={text} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
@@ -170,7 +172,7 @@ export default function Footer() {
                 </div>
               </a>
 
-              <a href="mailto:hello@kozyneststays.com" style={{
+              <a href="mailto:Anshpandit0074@gmail.com" style={{
                 display: "flex", alignItems: "center", gap: "10px",
                 padding: "12px 14px", borderRadius: "12px",
                 background: "#F2EDE6", border: "1px solid #E0DAD2",
@@ -179,7 +181,7 @@ export default function Footer() {
                 <Mail size={15} color="#B78955" />
                 <div>
                   <p style={{ fontSize: "12px", fontWeight: 600, color: "#1E2A20", lineHeight: 1 }}>Email Us</p>
-                  <p style={{ fontSize: "10.5px", color: "#68645E", marginTop: "2px" }}>hello@kozyneststays.com</p>
+                  <p style={{ fontSize: "10.5px", color: "#68645E", marginTop: "2px" }}>Anshpandit0074@gmail.com</p>
                 </div>
               </a>
 
@@ -211,8 +213,8 @@ export default function Footer() {
           <div className="lg:hidden">
             {/* Brand */}
             <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "10px", textDecoration: "none", marginBottom: "12px" }}>
-              <div style={{ width: "36px", height: "36px", borderRadius: "10px", background: "#1E2A20", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FAF7F2" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <div style={{ width: "36px", height: "36px", borderRadius: "10px", overflow: "hidden", flexShrink: 0 }}>
+                <Image src="/favicon.png" alt="KozyNestStays logo" width={36} height={36} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
               </div>
               <div>
                 <span style={{ fontWeight: 800, fontSize: "15px", color: "#1E2A20" }}>KozyNest</span>
@@ -227,7 +229,7 @@ export default function Footer() {
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "8px", marginBottom: "14px" }}>
               {[
                 { Icon: Phone, text: "+91 9211549792", href: "tel:+919211549792" },
-                { Icon: Mail, text: "hello@kozyneststays.com", href: "mailto:hello@kozyneststays.com" },
+                { Icon: Mail, text: "Anshpandit0074@gmail.com", href: "mailto:Anshpandit0074@gmail.com" },
                 { Icon: MapPin, text: "Paramount Golf Foreste, Zeta-1", href: "https://maps.google.com/?q=28.513355,77.525688" },
               ].map(({ Icon, text, href }) => (
                 <li key={text} style={{ display: "flex", gap: "8px", alignItems: "center" }}>

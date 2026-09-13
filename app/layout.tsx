@@ -21,57 +21,112 @@ const inter = Inter({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
+  themeColor: "#1E2A20",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kozyneststays.com"),
-  title: "KozyNestStays | Premium Stays in Greater Noida",
+
+  /* ── Title ── */
+  title: {
+    default: "KozyNestStays | Premium Short-Stay Apartments in Greater Noida",
+    template: "%s | KozyNestStays",
+  },
+
+  /* ── Description (155 chars max, keyword-rich) ── */
   description:
-    "Book comfortable stays at KozyNestStays in Paramount Golf Foreste, Zeta-1, Greater Noida. Explore our properties and enquire directly through WhatsApp.",
+    "Book fully-furnished, premium short-stay apartments at Paramount Golf Foreste, Zeta-1, Greater Noida. Perfect for couples, families & business travellers. Enquire on WhatsApp — instant confirmation.",
+
+  /* ── Keywords ── */
   keywords: [
     "short stay Greater Noida",
-    "premium apartments Greater Noida",
-    "Paramount Golf Foreste stays",
-    "furnished apartments Noida",
-    "KozyNestStays",
+    "short term rental Greater Noida",
+    "furnished apartment Greater Noida",
+    "service apartment Noida",
+    "Paramount Golf Foreste stay",
     "Zeta-1 Greater Noida accommodation",
+    "KozyNestStays",
+    "kozy nest stays",
+    "holiday apartment Greater Noida",
+    "couple friendly stay Greater Noida",
     "business travel accommodation Noida",
+    "Airbnb alternative Greater Noida",
+    "premium homestay Noida",
+    "luxury apartment Greater Noida",
+    "daily rent apartment Greater Noida",
+    "weekly rental Noida",
+    "Ansh hoster stays",
   ],
-  authors: [{ name: "KozyNestStays" }],
+
+  /* ── Authorship ── */
+  authors: [{ name: "KozyNestStays", url: "https://kozyneststays.com" }],
   creator: "KozyNestStays",
-  robots: { index: true, follow: true },
-  alternates: { canonical: "https://kozyneststays.com" },
+  publisher: "KozyNestStays",
+
+  /* ── Canonical + Alternates ── */
+  alternates: {
+    canonical: "https://kozyneststays.com",
+  },
+
+  /* ── Indexing ── */
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  /* ── Favicon / Icons ── */
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+    ],
     shortcut: "/favicon.png",
     apple: "/favicon.png",
   },
+
+  /* ── Open Graph (Facebook, WhatsApp, LinkedIn previews) ── */
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: "https://kozyneststays.com",
     siteName: "KozyNestStays",
-    title: "KozyNestStays | Premium Stays in Greater Noida",
+    title: "KozyNestStays | Premium Short-Stay Apartments in Greater Noida",
     description:
-      "Book comfortable stays at Paramount Golf Foreste, Zeta-1, Greater Noida. Enquire via WhatsApp.",
+      "Fully-furnished premium apartments at Paramount Golf Foreste, Zeta-1, Greater Noida. ₹1,400/night onwards. Ideal for couples, families & business trips.",
     images: [
       {
-        url: "/images/hero.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "KozyNestStays — Premium apartment living room in Greater Noida",
+        alt: "KozyNestStays — Premium furnished apartments at Paramount Golf Foreste, Greater Noida",
+        type: "image/jpeg",
       },
     ],
   },
+
+  /* ── Twitter / X card ── */
   twitter: {
     card: "summary_large_image",
     title: "KozyNestStays | Premium Stays in Greater Noida",
     description:
-      "Book comfortable stays at Paramount Golf Foreste, Zeta-1, Greater Noida. Enquire via WhatsApp.",
-    images: ["/images/hero.jpg"],
+      "Fully-furnished premium apartments at Paramount Golf Foreste, Zeta-1, Greater Noida. From ₹1,400/night.",
+    images: ["/og-image.jpg"],
+    creator: "@kozyneststays",
   },
+
+  /* ── App / manifest ── */
+  applicationName: "KozyNestStays",
+  category: "travel",
 };
+
 
 export default function RootLayout({
   children,
