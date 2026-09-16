@@ -99,7 +99,7 @@ export default function Footer() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "9px", marginBottom: "18px" }}>
                 {[
                   { Icon: Phone, text: "+91 9211549792", href: "tel:+919211549792" },
-                  { Icon: Mail, text: "Anshpandit0074@gmail.com", href: "mailto:Anshpandit0074@gmail.com" },
+                  { Icon: Mail, text: "Kozynest.grnoida@gmail.com", href: "mailto:Kozynest.grnoida@gmail.com" },
                   { Icon: MapPin, text: "Paramount Golf Foreste, Zeta-1, Greater Noida", href: "https://maps.google.com/?q=28.513355,77.525688" },
                 ].map(({ Icon, text, href }) => (
                   <li key={text} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
