@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const stats = [
   { value: "100+", label: "Happy Guests" },
-  { value: "5", label: "Curated Properties" },
+  { value: "6", label: "Curated Properties" },
   { value: "24/7", label: "Guest Support" },
   { value: "1", label: "Premium Location" },
 ];

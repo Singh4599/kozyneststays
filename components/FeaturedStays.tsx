@@ -193,7 +193,7 @@ export default function FeaturedStays() {
                 borderBottom: "1.5px solid #1E2A20", whiteSpace: "nowrap",
               }}
             >
-              View all 5 properties
+              View all 6 properties
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>

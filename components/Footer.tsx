@@ -30,6 +30,7 @@ const properties = [
   { name: "Kozynest Unit 3", price: "₹1,600/night" },
   { name: "Kozynest Unit 4", price: "₹1,800/night" },
   { name: "Kozynest Unit 5", price: "₹2,000/night" },
+  { name: "Kozynest Unit 6", price: "₹2,200/night" },
 ];
 
 const amenities = [
