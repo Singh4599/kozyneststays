@@ -86,4 +86,21 @@ export const stays: Stay[] = [
     ],
     slug: "kozy-nest-5",
   },
+  {
+    id: "6",
+    name: "Kozynest Unit 6",
+    location: "Paramount Golf Foreste, Greater Noida",
+    price: 2200,
+    image: "/images/properties/kozy-6/cover.jpg",
+    images: [
+      "/images/properties/kozy-6/cover.jpg",
+      "/images/properties/kozy-6/2.jpg",
+      "/images/properties/kozy-6/3.jpg",
+      "/images/properties/kozy-6/4.jpg",
+      "/images/properties/kozy-6/5.jpg",
+      "/images/properties/kozy-6/6.jpg",
+      "/images/properties/kozy-6/7.jpg",
+    ],
+    slug: "kozy-nest-6",
+  },
 ];
